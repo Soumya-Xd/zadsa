@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            background: linear-gradient(to bottom, #AEE2FF, #FDF6E3);
+            animation: gradientFlow 10s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes gradientFlow {
+            0% { background: linear-gradient(to bottom, #AEE2FF, #FDF6E3); }
+            50% { background: linear-gradient(to bottom, #FDF6E3, #AEE2FF); }
+            100% { background: linear-gradient(to bottom, #AEE2FF, #FDF6E3); }
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .school-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid;
+            background: linear-gradient(90deg, #AEE2FF, #FDF6E3, #AEE2FF);
+            animation: borderFlow 5s linear infinite;
+        }
+
+        @keyframes borderFlow {
+            0% { border-color: #AEE2FF; }
+            50% { border-color: #FDF6E3; }
+            100% { border-color: #AEE2FF; }
+        }
+
+        .school-name {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .school-tagline {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            padding: 20px;
+            margin-top: -112px;
+        }
+
+        /* Image Section */
+        .school-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .school-image img {
+            max-width: 100%;
+            max-height: 80%;
+            border-radius: 10px;
+            border: 5px solid transparent;
+            background: linear-gradient(90deg, #AEE2FF, #FDF6E3, #AEE2FF);
+            animation: borderFlow 5s linear infinite;
+        }
+
+        /* Login Section */
+        .login-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-section input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-section button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .login-section a {
+            margin-top: 10px;
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 10px;
+            }
+
+            .school-image {
+                order: 1;
+                padding: 10px 0;
+            }
+
+            .login-section {
+                order: 2;
+                padding: 10px 0;
+                margin-top: -304px;
+            }
+
+            .login-section form {
+                max-width: 300px;
+            }
+
+            .school-image, .login-section {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <img src="school-logo.png" alt="School Logo" class="school-logo">
+        <h1 class="school-name">Angel Heart Public School</h1>
+        <p class="school-tagline">(Shaping young minds for tomorrow)</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- School Image -->
+        <div class="school-image">
+            <img src="pexels-droosmo-2982449.jpg" alt="School">
+        </div>
+
+        <div class="login-section">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="button" onclick="handleLogin()">Login</button>
+            </form>
+            <a href="#">Forgot Password?</a>
+        </div>
+    
+        <script>
+            // Get the redirect page from the URL query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectPage = urlParams.get('redirect');
+            
+            function handleLogin() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+            
+                // Check for username and password
+                if (username === 'admin' && password === '12345') {
+                    console.log("Login successful"); // Debugging log
+                    // Redirect to the appropriate page based on the redirectPage parameter
+                    if (redirectPage === 'attendence') {
+                        window.location.href = 'attendence.html'; // Replace with actual Attendance page URL
+                    } else if (redirectPage === 'tutionfees') {
+                        window.location.href = 'tutionfees.html'; // Redirect to Tuition Fees page
+                    } else {
+                        alert('Redirect page is not specified or invalid');
+                    }
+                } else {
+                    alert('Invalid username or password');
+                }
+            }
+        </script>
+        
+</body>
+
+</html>
